@@ -1,0 +1,38 @@
+server:
+  port: 10012
+
+spring:
+  application:
+    name: inventory-service
+  datasource:
+    url: jdbc:h2:mem:inventory
+    username: sa
+    password:
+    hikari:
+      minimum-idle: 4
+      maximum-pool-size: 8
+      connection-timeout: 15000
+    driver-class-name: org.h2.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+
+inventory:
+  threshold_stock:
+    pepsi: 10
+    chips: 5
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: refresh,health,info
+  endpoint:
+    refresh:
+      enabled: true
